@@ -3,8 +3,8 @@ class CreateFoods < ActiveRecord::Migration[7.1]
     create_table :foods do |t|
       t.string :name
       t.string :measurement_unit
-      t.string :price
-      t.string :quantity
+      t.integer :quantity
+      t.integer :price
       t.references :user, null: false, foreign_key: true
 
       t.timestamps

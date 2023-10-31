@@ -1,0 +1,9 @@
+class Food < ApplicationRecord
+  belongs_to :user
+
+  validates :name, presence: true
+  validates :preparation_time, presence: true
+  validates :cook_time, presence: true
+  validates :description, presence: true
+  validates :public, presence: true
+end

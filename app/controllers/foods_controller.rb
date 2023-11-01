@@ -1,7 +1,7 @@
 class FoodsController < ApplicationController
   # GET /foods
   def index
-    @foods = Food.order(created_at: :desc)
+    @foods = Food.order(created_at: :asc)
   end
 
   # GET /foods/new

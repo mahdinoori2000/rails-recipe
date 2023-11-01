@@ -1,0 +1,13 @@
+<div id="<%= dom_id recipe %>">
+  <div>
+    <p>
+      <%= link_to recipe.name, recipe %>
+    </p>
+    <%= button_to "Remove", @recipe, method: :delete %>
+  </div>
+
+  <div>
+    <p>
+      <%= recipe.description %>
+    </p>
+  </div>

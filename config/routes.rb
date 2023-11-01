@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
+  # Food Routes
   get 'recipe_foods/index'
-  resources :foods
+  get 'foods/' => 'foods#index', as: 'foods'
+  get 'foods/new' => 'foods#new', as: 'add_food'
+  get 'foods/delete/:id' => 'foods#destroy', as: 'delete_food'
+
+  post 'foods/create' => 'foods#create', as: 'create_food'
   resources :recipes
   resources :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -10,5 +15,5 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-  # root "posts#index"
+  root "foods#index"
 end

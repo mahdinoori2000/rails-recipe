@@ -13,6 +13,7 @@
     <span>Name <%= food_item.name %></span>
     <span>Quantity <%= recipe_food.quantity %></span>
     <span>Value <%= recipe_food.quantity * food_item.price %></span>
+    <td><%= link_to "Delete", delete_recipe_food_path(recipe_food.id) %></td>
     </p>
   <% end %>
 </div>

@@ -1,10 +1,29 @@
 <p style="color: green"><%= notice %></p>
+<%= link_to "Back to recipes", recipes_path %>
+<h1>Recipes</h1>
 
 <%= render @recipe %>
-
+<%= button_to "Generate Shopping List" %>
+  <%= link_to "Add Ingredients", add_recipe_food_path %>
 <div>
-  <%= link_to "Edit this recipe", edit_recipe_path(@recipe) %> |
-  <%= link_to "Back to recipes", recipes_path %>
 
-  <%= button_to "Destroy this recipe", @recipe, method: :delete %>
+<div id="recipes">
+  <table style="border:1px solid #333; border-collapse: collapse;">
+    <tr style="border:1px solid #333; border-collapse: collapse;">
+      <th style="border:1px solid #333; border-collapse: collapse;">Name</th>
+      <th style="border:1px solid #333; border-collapse: collapse;">Quantity</th>
+      <th style="border:1px solid #333; border-collapse: collapse;">Value</th>
+  <th style="border:1px solid #333; border-collapse: collapse;">Action</th>
+</tr>
+<% @recipe_foods.each do |recipe_food| %>
+  <% food_item = @food.find { |food| food.id == recipe_food.food_id } %>
+<tr>
+  <td style="border:1px solid #333; border-collapse: collapse;"><%= food_item.name%></td>
+  <td style="border:1px solid #333; border-collapse: collapse;"><%= recipe_food.quantity%></td>
+  <td style="border:1px solid #333; border-collapse: collapse;">$ <%= recipe_food.quantity * food_item.price %></td>
+  <td style="border:1px solid #333; border-collapse: collapse;"><%= link_to "Delete", delete_recipe_food_path(recipe_food.id) %></td>
+</tr>
+<% end %>
+</table>
+</div>
 </div>

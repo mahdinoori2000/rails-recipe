@@ -7,7 +7,16 @@ class RecipesController < ApplicationController
   end
 
   # GET /recipes/1 or /recipes/1.json
-  def show; end
+  def show
+    # @recipe_foods = RecipeFood.all
+    recipe_id = params[:id] # This will give you the 'id' from the URL
+
+    # Use the 'recipe_id' to find the specific recipe from the database
+    @recipe = Recipe.find(recipe_id) # You may need to find the specific recipe
+    @recipe_foods = @recipe.recipe_foods
+
+    @food = Food.all
+  end
 
   # GET /recipes/new
   def new

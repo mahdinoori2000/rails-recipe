@@ -4,8 +4,22 @@
 <%= render @recipe %>
 
 <div>
-  <%= link_to "Edit this recipe", edit_recipe_path(@recipe) %> |
+
+<h1>Recipes</h1>
+<div id="recipes">
+  <% @recipe_foods.each do |recipe_food| %>
+    <% food_item = @food.find { |food| food.id == recipe_food.food_id } %>
+    <p>
+    <span>Name <%= food_item.name %></span>
+    <span>Quantity <%= recipe_food.quantity %></span>
+    <span>Value <%= recipe_food.quantity * food_item.price %></span>
+    </p>
+  <% end %>
+</div>
+<%= link_to "Add new Recipe", new_recipe_path %>
+
+  # <%= link_to "Edit this recipe", edit_recipe_path(@recipe) %>
   <%= button_to "Generate Shopping List" %>
 
-  <%= button_to "Add Ingredients" %>
+  <%= link_to "Add Ingredients", add_recipe_food_path %>
 </div>

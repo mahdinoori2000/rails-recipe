@@ -1,0 +1,12 @@
+<%@recipes.each do |recipe|%>
+  <%@ingredients = @recipe_foods.where(recipe_id: recipe.id)%>
+  <%@total_price = 0%>
+  <%@ingredients.each do |item|%>
+    <%@total_price += item.food.price * item.quantity%>
+  <%end%>
+  <div>
+    <h1><%=recipe.name%><span> by <%=recipe.user.name%></span></h1>
+    <p><%=recipe.description%></p>
+    <p>The total price is $<%=@total_price%></p>
+  </div>
+<%end%>

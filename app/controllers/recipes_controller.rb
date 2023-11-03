@@ -1,21 +1,20 @@
 class RecipesController < ApplicationController
-  before_action :set_recipe, only: %i[show edit update destroy]
-
-  # GET /recipes or /recipes.json
+  # GET /recipes
   def index
     @recipes = Recipe.all
   end
 
-  # GET /recipes/1 or /recipes/1.json
+  # GET /recipes/1
   def show
-    # @recipe_foods = RecipeFood.all
-    recipe_id = params[:id] # This will give you the 'id' from the URL
-
-    # Use the 'recipe_id' to find the specific recipe from the database
-    @recipe = Recipe.find(recipe_id) # You may need to find the specific recipe
+    # recipe_id = params[:id]
+    @recipe = Recipe.find(params[:id])
     @recipe_foods = @recipe.recipe_foods
-
     @food = Food.all
+  end
+
+  def public_recipes
+    @recipes = Recipe.where(public: true)
+    @recipe_foods = RecipeFood.all
   end
 
   # GET /recipes/new
@@ -23,10 +22,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new
   end
 
-  # GET /recipes/1/edit
-  def edit; end
-
-  # POST /recipes or /recipes.json
+  # POST /recipes
   def create
     @recipe = Recipe.new(recipe_params)
 
@@ -41,21 +37,9 @@ class RecipesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /recipes/1 or /recipes/1.json
-  def update
-    respond_to do |format|
-      if @recipe.update(recipe_params)
-        format.html { redirect_to recipe_url(@recipe), notice: 'Recipe was successfully updated.' }
-        format.json { render :show, status: :ok, location: @recipe }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @recipe.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /recipes/1 or /recipes/1.json
+  # DELETE /recipes/1
   def destroy
+    @recipe = Recipe.find(params[:id])
     @recipe.destroy!
 
     respond_to do |format|
@@ -66,12 +50,6 @@ class RecipesController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_recipe
-    @recipe = Recipe.find(params[:id])
-  end
-
-  # Only allow a list of trusted parameters through.
   def recipe_params
     params.require(:recipe).permit(:name, :preparation_time, :cook_time, :description, :public, :user_id)
   end

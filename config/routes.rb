@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   # Food Routes
   get 'foods/' => 'foods#index', as: 'foods'
   get 'foods/new' => 'foods#new', as: 'add_food'

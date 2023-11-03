@@ -1,4 +1,6 @@
 class FoodsController < ApplicationController
+  before_action :authenticate_user!
+
   # GET /foods
   def index
     @foods = Food.order(created_at: :asc)

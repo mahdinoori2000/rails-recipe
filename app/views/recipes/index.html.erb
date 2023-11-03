@@ -2,9 +2,6 @@
 
 <p style="color: green"><%= notice %></p>
 
-<h1>Recipes</h1>
-<%= link_to "Add new Recipe", new_recipe_path %>
-
 <h1 style="margin: 0 20%;">Recipes</h1>
 <div style="display:flex; justify-content:flex-end;">
   <%= link_to "Add new Recipe", new_recipe_path, style: "margin: 0 20%;" %>
@@ -12,6 +9,5 @@
 <div id="recipes">
   <% @recipes.each do |recipe| %>
     <%= render 'recipes', recipe: recipe %>
-  <% end %>
+  <% end %>
 </div>
-

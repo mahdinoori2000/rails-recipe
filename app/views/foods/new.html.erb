@@ -1,9 +1,15 @@
-<h1>New food</h1>
+<h1 class="mb-5 text-center" style="margin-top: -2.5rem">New food</h1>
 
-<%= render "form", food: @food %>
 
-<br>
+<div class="tab-content d-flex justify-content-center">
+  <div class="tab-pane fade show active border rounded p-5" style="width: 57%" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
+    <%= render "form", food: @food %>
+
+  <br>
 
 <div>
   <%= link_to "Back to foods", foods_path %>
+</div>
+
+</div>
 </div>

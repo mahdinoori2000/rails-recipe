@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
   # GET /recipes
   def index
-    @recipes = Recipe.all
+    @recipes = current_user.recipes
   end
 
   # GET /recipes/1
@@ -58,6 +58,6 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:name, :preparation_time, :cook_time, :description, :public, :user_id)
-  end
+    params.require(:recipe).permit(:name, :preparation_time, :cook_time, :description, :public).merge(user_id: current_user.id)
+  end  
 end

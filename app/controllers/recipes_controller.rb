@@ -1,12 +1,11 @@
 class RecipesController < ApplicationController
-  # GET /recipes
+  before_action :authenticate_user!, except: %i[show public_recipes]
+
   def index
     @recipes = Recipe.all
   end
 
-  # GET /recipes/1
   def show
-    # recipe_id = params[:id]
     @recipe = Recipe.find(params[:id])
     @recipe_foods = @recipe.recipe_foods
     @food = Food.all
@@ -17,12 +16,10 @@ class RecipesController < ApplicationController
     @recipe_foods = RecipeFood.all
   end
 
-  # GET /recipes/new
   def new
     @recipe = Recipe.new
   end
 
-  # POST /recipes
   def create
     @recipe = Recipe.new(recipe_params)
 
@@ -37,7 +34,6 @@ class RecipesController < ApplicationController
     end
   end
 
-  # DELETE /recipes/1
   def destroy
     @recipe = Recipe.find(params[:id])
     @recipe.destroy!

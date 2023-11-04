@@ -5,9 +5,11 @@
   <div class="tab-pane fade show active border rounded p-5" style="width: 57%" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
 
     <%= render @recipe %>
-    <%= render "recipes/public_btn" %>
-    <%= button_to "Generate Shopping List" %>
-      <%= link_to "Add Ingredients", add_recipe_food_path %>
+    <div class="d-flex justify-content-between">
+      <%= button_to "Generate Shopping List" %>
+      <%= render "recipes/public_btn" %>
+    </div>
+    <%= link_to "Add Ingredients", add_recipe_food_path %>
     <div>
 
       <div id="recipes">

@@ -62,4 +62,4 @@ group :development do
   # gem "spring"
 end
 
-gem "bullet", "~> 7.1"
+gem 'bullet', '~> 7.1'

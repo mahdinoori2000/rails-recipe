@@ -10,13 +10,12 @@ RSpec.feature 'Public Recipe Page', type: :feature do
       @food2 = Food.create(name: 'BBQ Sauce', measurement_unit: 'Grams', price: 5, quantity: 1, user_id: @user.id)
       @food3 = Food.create(name: 'Potatoes', measurement_unit: 'Kilograms', price: 2, quantity: 1, user_id: @user.id)
       @recipe1 =
-        Recipe.create(name: 'Pulled Pork', preparation_time: 1, cook_time: 8, description: text, user_id: @user.id)
+        Recipe.create(name: 'Pulled chicken', preparation_time: 1, cook_time: 8, description: text, user_id: @user.id)
       @recipe2 =
         Recipe.create(name: 'Smoked Beef', preparation_time: 1, cook_time: 8,
                       description: text, user_id: @user.id, public: true)
-      @id = @recipe2.id
-      @ingredient1 = RecipeFood.create(quantity: 2, food_id: @food1.id, recipe_id: @id)
-      @ingredient2 = RecipeFood.create(quantity: 2, food_id: @food2.id, recipe_id: @id)
+      @ingredient1 = RecipeFood.create(quantity: 2, food_id: @food1.id, recipe_id: @recipe2.id)
+      @ingredient2 = RecipeFood.create(quantity: 2, food_id: @food2.id, recipe_id: @recipe2.id)
       login_as(@user, scope: :user)
       visit '/public_recipes'
     end

@@ -13,7 +13,7 @@ class RecipesController < ApplicationController
 
   def public_recipes
     @recipes = Recipe.where(public: true).order(created_at: :desc)
-    @recipe_foods = RecipeFood.all
+    @recipe_foods = RecipeFood.includes([:food]).all
   end
 
   def new

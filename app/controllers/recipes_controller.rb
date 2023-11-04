@@ -2,7 +2,7 @@ class RecipesController < ApplicationController
   before_action :authenticate_user!, except: %i[show public_recipes]
 
   def index
-    @recipes = Recipe.all
+    @recipes = current_user.recipes
   end
 
   def show
@@ -20,6 +20,14 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new
   end
 
+  def toggle_public
+    @recipe = Recipe.find(params[:id])
+    @recipe.update(public: !@recipe.public)
+
+    redirect_to recipe_path(@recipe)
+  end
+
+  # POST /recipes
   def create
     @recipe = Recipe.new(recipe_params)
 
@@ -47,6 +55,7 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:name, :preparation_time, :cook_time, :description, :public, :user_id)
+    params.require(:recipe).permit(:name, :preparation_time, :cook_time, :description,
+                                   :public).merge(user_id: current_user.id)
   end
 end

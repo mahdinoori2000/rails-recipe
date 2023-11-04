@@ -6,6 +6,7 @@ class RecipeFoodsController < ApplicationController
   def new
     @recipe = Recipe.find(params[:id])
     @recipe_food = RecipeFood.new
+    @foods = Food.order(created_at: :asc)
   end
 
   def create

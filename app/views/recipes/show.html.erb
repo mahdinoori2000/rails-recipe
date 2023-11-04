@@ -6,10 +6,12 @@
 
     <%= render @recipe %>
     <div class="d-flex justify-content-between">
-      <%= button_to "Generate Shopping List" %>
-      <%= render "recipes/public_btn" %>
+      <%= link_to "Generate Shopping List", shopping_list_path, class: "btn btn-primary" %>
+      <% if current_user == @recipe.user %>
+        <%= link_to "Add Ingredients", add_recipe_food_path, class: 'btn btn-primary' %>
+      <% end %>
     </div>
-    <%= link_to "Add Ingredients", add_recipe_food_path %>
+    <hr>
     <div>
 
       <div id="recipes">

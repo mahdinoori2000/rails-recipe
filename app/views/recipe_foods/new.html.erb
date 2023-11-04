@@ -16,9 +16,9 @@
 
     <%= form.hidden_field :recipe_id, value: @recipe.id%>
   
-    <div>
-      <%= form.label :food_id, style: "display: block" %>
-      <%= form.number_field :food_id %>
+    <div class="field">
+     <%= form.label :food_id, 'Select Food' %>
+     <%= form.select :food_id, options_for_select(@foods.pluck(:name, :id)), {}, { class: 'form-control' } %>
     </div>
 
     <div>

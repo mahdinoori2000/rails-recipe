@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   get 'public_recipes' => 'recipes#public_recipes'
   get 'recipes/:id/add_ingredient' => 'recipe_foods#new', as:'add_recipe_food'
   resources :recipes
+  # for updating the public 
+  patch 'recipes/:id/toggle_public', to: 'recipes#toggle_public', as: 'toggle_public_recipe'
 
   get 'recipe_foods' => 'recipe_foods#index', as:'recipe_foods'
   get 'recipe_foods/delete/:id' => 'recipe_foods#destroy', as: 'delete_recipe_food'

@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
   # GET /recipes
   def index
-    @recipes = Recipe.all
+    @recipes = current_user.recipes
   end
 
   # GET /recipes/1
@@ -20,6 +20,13 @@ class RecipesController < ApplicationController
   # GET /recipes/new
   def new
     @recipe = Recipe.new
+  end
+
+  def toggle_public
+    @recipe = Recipe.find(params[:id])
+    @recipe.update(public: !@recipe.public)
+
+    redirect_to recipe_path(@recipe)
   end
 
   # POST /recipes
@@ -51,6 +58,7 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:name, :preparation_time, :cook_time, :description, :public, :user_id)
+    params.require(:recipe).permit(:name, :preparation_time, :cook_time, :description,
+                                   :public).merge(user_id: current_user.id)
   end
 end

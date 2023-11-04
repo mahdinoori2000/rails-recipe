@@ -1,5 +1,7 @@
 <%- if controller_name != 'sessions' %>
-  <%= link_to "Log in", new_session_path(resource_name) %><br />
+  <div class="tab-content d-flex justify-content-around">
+    <%= link_to "Log in", new_session_path(resource_name), class: "ml-5 text-center", style: "margin-left: -2.5rem" %><br />
+  </div>
 <% end %>
 
 <%#- if devise_mapping.registerable? && controller_name != 'registrations' %>

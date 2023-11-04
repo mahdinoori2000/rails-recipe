@@ -15,5 +15,5 @@
       </li>
     </ul>
     </div>
-    <%= link_to "Logout", root_path, class:"fs-6 btn btn-primary me-4" %>
+    <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: "fs-6 btn btn-primary me-4" %>
 </nav>

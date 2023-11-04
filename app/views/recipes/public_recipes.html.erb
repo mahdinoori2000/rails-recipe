@@ -1,3 +1,4 @@
+<h1>Public Recipes</h1>
 <%@recipes.each do |recipe|%>
   <%@ingredients = @recipe_foods.where(recipe_id: recipe.id)%>
   <%@total_price = 0%>
@@ -5,7 +6,7 @@
     <%@total_price += item.food.price * item.quantity%>
   <%end%>
   <div>
-    <h1><%= link_to recipe.name, recipe %><span> by <%=recipe.user.name%></span></h1>
+    <h2><%= link_to recipe.name, recipe %><span> by <%=recipe.user.name%></span></h2>
     <p><%=recipe.description%></p>
     <p>The total price is $<%=@total_price%></p>
   </div>

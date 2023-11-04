@@ -1,40 +1,43 @@
-<h1>New Ingredient</h1>
+<h1 class="mb-5 text-center" style="margin-top: -2.5rem">New Ingredient</h1>
 
-<%= form_with model: @recipe_food, url: create_recipe_food_path, local: :true do |form| %>
-
-    <% if @recipe_food.errors.any? %>
-      <div style="color: red">
-        <h2><%= pluralize(@recipe_food.errors.count, "error") %> prohibited this Ingredient from being saved:</h2>
+<div class="tab-content d-flex justify-content-center">
+  <div class="tab-pane fade show active border rounded p-5" style="width: 57%" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
+    
+    <%= form_with model: @recipe_food, url: create_recipe_food_path, local: :true do |form| %>
+      <% if @recipe_food.errors.any? %>
+        <div style="color: red">
+          <h2><%= pluralize(@recipe_food.errors.count, "error") %> prohibited this Ingredient from being saved:</h2>
   
-        <ul>
-          <% @recipe_food.errors.each do |error| %>
-            <li><%= error.full_message %></li>
-          <% end %>
-        </ul>
+          <ul>
+            <% @recipe_food.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      
+    <%= form.hidden_field :recipe_id, value: @recipe.id%>
+      <div class="field form-outline">
+        <%= form.label :food_id, 'Select Food', class: "mb-2", style: "display: block" %>
+        <%= form.select :food_id, options_for_select(@foods.pluck(:name, :id)), {}, { class: "form-control" } %>
+      </div>
+
+      <div class="form-outline mb-4">
+        <%= form.label :quantity, class: "mb-2", style: "display: block" %>
+        <%= form.number_field :quantity, class: "form-control" %>
+      </div>
+  
+      <div class="form-outline mb-4">
+        <%= form.submit "Create Ingredient", class: "btn btn-primary btn-block mb-3 w-10" %>
       </div>
     <% end %>
-
-    <%= form.hidden_field :recipe_id, value: @recipe.id%>
-  
-    <div class="field">
-     <%= form.label :food_id, 'Select Food' %>
-     <%= form.select :food_id, options_for_select(@foods.pluck(:name, :id)), {}, { class: 'form-control' } %>
-    </div>
+ 
+    <br>
 
     <div>
-      <%= form.label :quantity, style: "display: block" %>
-      <%= form.number_field :quantity %>
-    </div>
-  
-    <div>
-      <%= form.submit "Create Ingredient" %>
+      <%= link_to "Back to recipe", recipes_path %>
     </div>
 
-  <% end %>
-  
-
-<br>
-
-<div>
-  <%= link_to "Back to recipe", recipes_path %>
+  </div>
 </div>

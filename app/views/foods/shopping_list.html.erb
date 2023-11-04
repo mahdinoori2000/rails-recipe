@@ -1,0 +1,33 @@
+<section>
+  <%@food_table_data = []%>
+  <%@food_to_buy = 0%>
+  <%@total_food_value = 0%>
+  <%@foods.each do |food|%>
+    <%@ingredient_quantity = @ingredients.where(food_id: food.id).sum(:quantity)%>
+    <%if @ingredient_quantity >= food.quantity%>
+      <%@quantity_diff = @ingredient_quantity - food.quantity%>
+      <%@total_price = @quantity_diff * food.price%>
+      <%@food_table_data.push([food.name, @quantity_diff, @total_price])%>
+      <%@food_to_buy += 1%>
+      <%@total_food_value += @total_price%>
+    <%end%>
+  <%end%>
+  <h1>Shopping List</h1>
+
+  <p><span>Ammount of food items to buy <%=@food_to_buy%>.</span>  <span>Total value of food needed $<%=@total_food_value%></span></p>
+  <table>
+    <tr>
+      <th>Food</th>
+      <th>Quantity</th>
+      <th>Price</th>
+    </tr>
+    <%@food_table_data.each do |data|%>
+    <tr>
+      <td><%=data[0]%></td>
+      <td><%=data[1]%></td>
+      <td><%=data[2]%></td>
+    </tr>
+    <%end%>
+  </table>
+
+</section>

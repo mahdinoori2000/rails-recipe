@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'foods/' => 'foods#index', as: 'foods'
   get 'foods/new' => 'foods#new', as: 'add_food'
   get 'foods/delete/:id' => 'foods#destroy', as: 'delete_food'
+  get 'general_shopping_list' => 'foods#shopping_list'
 
   post 'foods/create' => 'foods#create', as: 'create_food'
 

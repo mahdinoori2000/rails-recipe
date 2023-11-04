@@ -8,18 +8,18 @@ RSpec.describe Food, type: :model do
     end
 
     it 'requires a quantity' do
-        food = Food.new(quantity: nil)
-        expect(food).not_to be_valid
+      food = Food.new(quantity: nil)
+      expect(food).not_to be_valid
     end
 
     it 'requires a measurement_unit' do
-        food = Food.new(measurement_unit: nil)
-        expect(food).not_to be_valid
+      food = Food.new(measurement_unit: nil)
+      expect(food).not_to be_valid
     end
 
     it 'requires a price' do
-        food = Food.new(price: nil)
-        expect(food).not_to be_valid
+      food = Food.new(price: nil)
+      expect(food).not_to be_valid
     end
   end
 

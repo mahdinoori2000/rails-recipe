@@ -8,13 +8,13 @@ RSpec.describe User, type: :model do
     end
 
     it 'requires a email' do
-        user = User.new(email: nil)
-        expect(user).not_to be_valid
+      user = User.new(email: nil)
+      expect(user).not_to be_valid
     end
 
     it 'requires a password' do
-        user = User.new(password: nil)
-        expect(user).not_to be_valid
+      user = User.new(password: nil)
+      expect(user).not_to be_valid
     end
 
     it 'requires the name to be unique' do

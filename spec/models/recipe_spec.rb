@@ -8,13 +8,13 @@ RSpec.describe Recipe, type: :model do
     end
 
     it 'requires a preparation_time' do
-        recipe = Recipe.new(preparation_time: nil)
-        expect(recipe).not_to be_valid
+      recipe = Recipe.new(preparation_time: nil)
+      expect(recipe).not_to be_valid
     end
 
     it 'requires a cook_time' do
-        recipe = Recipe.new(cook_time: nil)
-        expect(recipe).not_to be_valid
+      recipe = Recipe.new(cook_time: nil)
+      expect(recipe).not_to be_valid
     end
 
     it 'requires the name to be unique' do

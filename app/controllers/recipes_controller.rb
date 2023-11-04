@@ -22,6 +22,14 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new
   end
 
+  def toggle_public
+    @recipe = Recipe.find(params[:id])
+    @recipe.update(public: !@recipe.public)
+  
+    redirect_to recipe_path(@recipe)
+  end
+  
+
   # POST /recipes
   def create
     @recipe = Recipe.new(recipe_params)

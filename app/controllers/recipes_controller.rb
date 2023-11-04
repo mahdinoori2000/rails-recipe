@@ -1,23 +1,21 @@
 class RecipesController < ApplicationController
-  # GET /recipes
+  before_action :authenticate_user!, except: %i[show public_recipes]
+
   def index
     @recipes = current_user.recipes
   end
 
-  # GET /recipes/1
   def show
-    # recipe_id = params[:id]
     @recipe = Recipe.find(params[:id])
     @recipe_foods = @recipe.recipe_foods
     @food = Food.all
   end
 
   def public_recipes
-    @recipes = Recipe.where(public: true)
-    @recipe_foods = RecipeFood.all
+    @recipes = Recipe.where(public: true).order(created_at: :desc)
+    @recipe_foods = RecipeFood.includes([:food]).all
   end
 
-  # GET /recipes/new
   def new
     @recipe = Recipe.new
   end
@@ -44,7 +42,6 @@ class RecipesController < ApplicationController
     end
   end
 
-  # DELETE /recipes/1
   def destroy
     @recipe = Recipe.find(params[:id])
     @recipe.destroy!

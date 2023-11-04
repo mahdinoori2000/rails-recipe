@@ -3,7 +3,7 @@ class FoodsController < ApplicationController
 
   # GET /foods
   def index
-    @foods = Food.order(created_at: :asc)
+    @foods = Food.where(user_id: current_user.id).order(created_at: :asc)
   end
 
   # GET /foods/new
@@ -12,8 +12,8 @@ class FoodsController < ApplicationController
   end
 
   def shopping_list
-    @foods = Food.all
-    @ingredients = RecipeFood.all
+    @foods = Food.where(user_id: current_user.id)
+    @ingredients = RecipeFood.joins(:recipe).where(recipes: { user_id: current_user.id })
   end
 
   # POST foods/create

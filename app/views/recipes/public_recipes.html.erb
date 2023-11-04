@@ -5,7 +5,7 @@
     <%@total_price += item.food.price * item.quantity%>
   <%end%>
   <div>
-    <h1><%=recipe.name%><span> by <%=recipe.user.name%></span></h1>
+    <h1><%= link_to recipe.name, recipe %><span> by <%=recipe.user.name%></span></h1>
     <p><%=recipe.description%></p>
     <p>The total price is $<%=@total_price%></p>
   </div>

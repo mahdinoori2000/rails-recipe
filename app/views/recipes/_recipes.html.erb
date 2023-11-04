@@ -1,0 +1,16 @@
+
+<table class="table table-borderless pt-3">
+  <tbody class="border border-primary-subtle">
+    <tr>
+      <td><%= link_to recipe.name, recipe %></td>
+      <td colspan="3"><%= recipe.description %></td>
+    </tr>
+    <tr>
+    <td>
+    </td>
+    </tr>
+    <tr>
+      <td><%= button_to "Remove", recipe, method: :delete, class: "fs-6 btn btn-primary me-4 mb-4" %></td>
+      </tr>
+  </tbody>
+</table>

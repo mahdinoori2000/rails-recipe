@@ -1,0 +1,4 @@
+<%= form_with(model: @recipe, url: toggle_public_recipe_path(@recipe), method: :patch) do |form| %>
+    <%= form.submit(@recipe.public? ? 'Make Private' : 'Make Public', class: 'btn btn-primary') %>
+<% end %>
+  

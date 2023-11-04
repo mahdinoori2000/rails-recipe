@@ -1,0 +1,22 @@
+<div id="<%= dom_id recipe %>">
+  <div class="d-flex justify-content-between">
+    <%= content_tag :p, recipe.name, class: "fs-3" %>
+    <%= render "recipes/public_btn" %>
+  </div>
+
+  <p>
+    <strong>Preparation time:</strong>
+    <%= recipe.preparation_time %>
+  </p>
+
+  <p>
+    <strong>Cook time:</strong>
+    <%= recipe.cook_time %>
+  </p>
+
+  <p class="mb-3">
+    <strong>User:</strong>
+    <%= recipe.user_id %>
+  </p>
+
+</div>

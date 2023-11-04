@@ -1,0 +1,21 @@
+<p style="color: green" style="margin: 0 20%;"><%= notice %></p>
+<p style="color: green"><%= notice %></p>
+
+<h1 class="mb-5 text-center" style="margin-top: -2.5rem">Recipes</h1>
+
+<div class="tab-content d-flex justify-content-center">
+  <div class="tab-pane fade show active border rounded p-5" style="width: 57%" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
+  
+    <div class="d-flex justify-content-end">
+      <%= link_to "Add new Recipe", new_recipe_path, class: "fs-6 btn btn-primary me-4 mb-4" %>
+    </div>
+
+    <div id="recipes">
+      <% @recipes.each do |recipe| %>
+        <%= render 'recipes', recipe: recipe %>
+      <% end %>
+    </div>
+
+  </div>
+</div>
+

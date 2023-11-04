@@ -1,0 +1,43 @@
+<%= form_with(model: recipe) do |form| %>
+  <% if recipe.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+
+      <ul>
+        <% recipe.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-outline mb-4">
+    <%= form.label :name, class: "mb-2", style: "display: block" %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="form-outline mb-4">
+    <%= form.label :preparation_time, class: "mb-2", style: "display: block" %>
+    <%= form.text_field :preparation_time, class: "form-control" %>
+  </div>
+
+  <div class="form-outline mb-4">
+    <%= form.label :cook_time, class: "mb-2", style: "display: block" %>
+    <%= form.text_field :cook_time, class: "form-control" %>
+  </div>
+
+  <div class="form-outline mb-4">
+    <%= form.label :description, class: "mb-2", style: "display: block" %>
+    <%= form.text_area :description, class: "form-control", style: "height: 10rem" %>
+  </div>
+
+  <div class="form-outline mb-4">
+    <%= form.label :public, class: "mb-2", style: "display: block" %>
+    <%= form.check_box :public %>
+  </div>
+
+  <div class="form-outline mb-4">
+    <%= form.submit class: "btn btn-primary btn-block mb-3 w-10" %>
+  </div>
+
+<% end %>
